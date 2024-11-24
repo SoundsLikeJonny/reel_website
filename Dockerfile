@@ -6,7 +6,7 @@ RUN apk update
 RUN apk add git
 RUN apk add cargo
 
-#COPY requirements.txt ./
+COPY requirements.txt ./
 RUN pip install --no-cache -r requirements.txt
 
 COPY . .
