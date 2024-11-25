@@ -20,6 +20,7 @@
 
 import flet as ft
 
+from src.views.view_error404 import ViewError404
 from src.views.view_home import ViewHome
 
 
@@ -27,10 +28,17 @@ def main(page: ft.Page):
     def route_change(e: ft.RouteChangeEvent):
         page.views.clear()
 
-        if page.route == '/':
-            page.views.append(
-                ViewHome(page)
-            )
+        match page.route:
+            case '/':
+                page.views.append(
+                    ViewHome(page)
+                )
+            case _:
+                page.route = 'error'
+                page.views.append(
+                    ViewError404(page)
+                )
+
         page.update()
 
     def view_pop(e: ft.ViewPopEvent):

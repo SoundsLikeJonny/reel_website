@@ -19,11 +19,24 @@
 #  SOFTWARE.
 
 import flet as ft
-from src.pages.page_main import main
 
-ft.app(
-    target=main,
-    view=ft.AppView.WEB_BROWSER,
-    port=8080,
-    assets_dir='assets',
-)
+
+class ViewError404(ft.View):
+    def __init__(self, page: ft.Page):
+        super().__init__(
+            route='/error'
+        )
+        self.controls = [
+            ft.Container(
+                alignment=ft.alignment.center,
+                content=ft.Column(
+                    controls=[
+                        ft.Text('error 404, page not found'),
+                        ft.TextButton(
+                            text='Click to return to site',
+                            on_click=lambda _: page.go('/')
+                        )
+                    ]
+                )
+            )
+        ]

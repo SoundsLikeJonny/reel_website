@@ -23,7 +23,9 @@ import flet as ft
 
 class ViewHome(ft.View):
     def __init__(self, page: ft.Page):
-        super().__init__()
+        super().__init__(
+            route='/'
+        )
         page.theme_mode = ft.ThemeMode.LIGHT
         page.scroll = ft.ScrollMode.ADAPTIVE
         page.auto_scroll = True
@@ -31,13 +33,34 @@ class ViewHome(ft.View):
         self.navigation_bar = ft.Container(
             ft.Row(
                 expand=True,
+                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                 controls=[
-                    # ft.IconButton('test'),
-                    ft.Row(expand=True),
-                    ft.TextButton('test'),
-                    ft.TextButton('test'),
-                    ft.Row(expand=True),
-                    ft.TextButton('test'),
+                    ft.TextButton(
+                        content=ft.Image(
+                            '/logo.png',
+                            fit=ft.ImageFit.FIT_WIDTH,
+                            width=200
+                        )
+                    ),
+                    ft.Container(
+                        content=ft.Row(
+                            controls=[
+                                ft.TextButton(
+                                    'Home | Reel'
+                                ),
+                                ft.TextButton(
+                                    'About'
+                                ),
+                            ]
+                        ),
+                        alignment=ft.alignment.center
+                    ),
+                    ft.Container(
+                        content=ft.IconButton(
+                            icon=ft.icons.MAIL_OUTLINE_ROUNDED,
+                            on_click=lambda _: page.go('mailto:jon.evans.audio@gmail.com')
+                        )
+                    )
                 ]
             )
         )

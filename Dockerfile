@@ -10,7 +10,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache -r requirements.txt
 
 COPY . .
-#ADD assets assets
+ADD assets assets
 
 EXPOSE 8080
 
