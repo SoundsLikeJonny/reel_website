@@ -18,3 +18,14 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+import flet as ft
+
+
+class ViewHome(ft.View):
+    def __init__(self, page: ft.Page):
+        super().__init__()
+        self.controls = [
+            ft.Container(
+                ft.Text('test')
+            )
+        ]

@@ -20,6 +20,24 @@
 
 import flet as ft
 
+from src.views.view_home import ViewHome
+
 
 def main(page: ft.Page):
-    page.update()
+    def route_change(e: ft.RouteChangeEvent):
+        page.views.clear()
+
+        if page.route == '/':
+            page.views.append(
+                ViewHome(page)
+            )
+        page.update()
+
+    def view_pop(e: ft.ViewPopEvent):
+        page.views.pop()
+        top_view: ft.View = page.views[-1]
+        page.go(top_view.route)
+
+    page.on_route_change = route_change
+    page.on_view_pop = view_pop
+    page.go(page.route)
