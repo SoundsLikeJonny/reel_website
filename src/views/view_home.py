@@ -24,8 +24,24 @@ import flet as ft
 class ViewHome(ft.View):
     def __init__(self, page: ft.Page):
         super().__init__()
-        self.controls = [
-            ft.Container(
-                ft.Text('test')
+        page.theme_mode = ft.ThemeMode.LIGHT
+        page.scroll = ft.ScrollMode.ADAPTIVE
+        page.auto_scroll = True
+
+        self.navigation_bar = ft.Container(
+            ft.Row(
+                expand=True,
+                controls=[
+                    # ft.IconButton('test'),
+                    ft.Row(expand=True),
+                    ft.TextButton('test'),
+                    ft.TextButton('test'),
+                    ft.Row(expand=True),
+                    ft.TextButton('test'),
+                ]
             )
+        )
+
+        self.controls = [
+            ft.Container()
         ]
