@@ -20,51 +20,37 @@
 
 import flet as ft
 
+from src.controls.navbar import NavBar
+
 
 class ViewHome(ft.View):
     def __init__(self, page: ft.Page):
         super().__init__(
             route='/'
         )
+
         page.theme_mode = ft.ThemeMode.LIGHT
         page.scroll = ft.ScrollMode.ADAPTIVE
         page.auto_scroll = True
 
-        self.navigation_bar = ft.Container(
-            ft.Row(
-                expand=True,
-                alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-                controls=[
-                    ft.TextButton(
-                        content=ft.Image(
-                            '/logo.png',
-                            fit=ft.ImageFit.FIT_WIDTH,
-                            width=200
-                        )
-                    ),
-                    ft.Container(
-                        content=ft.Row(
-                            controls=[
-                                ft.TextButton(
-                                    'Home | Reel'
-                                ),
-                                ft.TextButton(
-                                    'About'
-                                ),
-                            ]
-                        ),
-                        alignment=ft.alignment.center
-                    ),
-                    ft.Container(
-                        content=ft.IconButton(
-                            icon=ft.icons.MAIL_OUTLINE_ROUNDED,
-                            on_click=lambda _: page.go('mailto:jon.evans.audio@gmail.com')
-                        )
-                    )
-                ]
-            )
-        )
-
         self.controls = [
-            ft.Container()
+            ft.Container(
+                alignment=ft.alignment.center,
+                content=ft.Column(
+                    [
+                        ft.Text(
+                            'Sound Design Reel'
+                        ),
+                        ft.Container(
+                            height=300,
+                            width=600,
+                            content=ft.Video(
+                                playlist=[
+                                    ft.VideoMedia('https://www.youtube.com/watch?v=Cr2WM1LCJEk')
+                                ]
+                            )
+                        )
+                    ],
+                )
+            )
         ]

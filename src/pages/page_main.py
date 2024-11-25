@@ -20,6 +20,8 @@
 
 import flet as ft
 
+from src.controls.navbar import NavBar
+from src.views.view_about import ViewAbout
 from src.views.view_error404 import ViewError404
 from src.views.view_home import ViewHome
 
@@ -28,16 +30,20 @@ def main(page: ft.Page):
     def route_change(e: ft.RouteChangeEvent):
         page.views.clear()
 
+        view: ft.View = ViewError404(page)
         match page.route:
             case '/':
-                page.views.append(
-                    ViewHome(page)
-                )
+                view: ft.View = ViewHome(page)
+            case '/about':
+                view: ft.View = ViewAbout(page)
             case _:
                 page.route = 'error'
-                page.views.append(
-                    ViewError404(page)
-                )
+
+        view.navigation_bar = NavBar(page)
+
+        page.views.append(
+            view
+        )
 
         page.update()
 
