@@ -45,6 +45,17 @@ class ViewHome(ft.View):
                             height=300,
                             width=600,
                             content=ft.Video(
+                                expand=True,
+                                playlist_mode=ft.PlaylistMode.SINGLE,
+                                fill_color=ft.colors.BLACK,
+                                aspect_ratio=16 / 9,
+                                volume=100,
+                                autoplay=False,
+                                filter_quality=ft.FilterQuality.HIGH,
+                                muted=False,
+                                on_loaded=lambda e: print("Video loaded successfully!"),
+                                on_enter_fullscreen=lambda e: print("Video entered fullscreen!"),
+                                on_exit_fullscreen=lambda e: print("Video exited fullscreen!"),
                                 playlist=[
                                     ft.VideoMedia('https://www.youtube.com/watch?v=Cr2WM1LCJEk')
                                 ]

@@ -21,6 +21,8 @@
 
 import flet as ft
 
+from src.styles import ButtonStyles
+
 
 class NavBar(ft.AppBar):
     def __init__(self, page: ft.Page):
@@ -31,6 +33,7 @@ class NavBar(ft.AppBar):
                 ft.TextButton(
                     expand=True,
                     on_click=lambda _: page.go('/'),
+                    style=ButtonStyles.DEFAULT,
                     content=ft.Image(
                         '/logo.png',
                         fit=ft.ImageFit.FIT_WIDTH,

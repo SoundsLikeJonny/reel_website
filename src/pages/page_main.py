@@ -21,6 +21,7 @@
 import flet as ft
 
 from src.controls.navbar import NavBar
+from src.styles import Fonts
 from src.views.view_about import ViewAbout
 from src.views.view_error404 import ViewError404
 from src.views.view_home import ViewHome
@@ -52,6 +53,16 @@ def main(page: ft.Page):
         top_view: ft.View = page.views[-1]
         page.go(top_view.route)
 
+    page.theme = ft.Theme(
+        color_scheme_seed=ft.colors.BLACK,
+        font_family=Fonts.POPPINS,
+        page_transitions=ft.PageTransitionsTheme(
+            windows=ft.PageTransitionTheme.NONE,
+            macos=ft.PageTransitionTheme.OPEN_UPWARDS,
+            linux=ft.PageTransitionTheme.OPEN_UPWARDS,
+            ios=ft.PageTransitionTheme.OPEN_UPWARDS
+        )
+    )
     page.on_route_change = route_change
     page.on_view_pop = view_pop
     page.go(page.route)
